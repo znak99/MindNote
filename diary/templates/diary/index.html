@@ -1,17 +1,19 @@
 <h2>일기 목록 페이지</h2>
 
 <ul>
-    {% for object in object_list %}
+    {% for obj in object_list %}
     <li>
+        <a href="/diary/page/{{ obj.id }}">
         <div class="date">
-            <span>{{ object.dt_created|date:"d" }}</span>
-                        <p>{{ object.dt_created|date:"M" }}</p>
+            <span>{{obj.dt_created|date:"d"}}</span>
+            <p>{{obj.dt_created|date:"M"}}</p>
         </div>
-        <h2>{{ object.title }}</h2>
+        <h2>{{obj.title}}</h2>
         <div class="score">
             <p>감정점수</p>
-            <span>{{ object.score }}점</span>
+            <span>{{obj.score}}점</span>
         </div>
+        </a>
     </li>
     {% endfor %}
 </ul>
