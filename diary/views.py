@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DetailView
 from django.urls import reverse
 from .models import Page
 from .forms import PageForm
@@ -26,10 +26,15 @@ def info(request):
     return render(request, 'diary/info.html')
 
 
-def page_detail(request, page_id):
-    page = Page.objects.get(id=page_id)
-    context = {"object": page}
-    return render(request, 'diary/page_detail.html', context=context)
+# def page_detail(request, page_id):
+#     page = Page.objects.get(id=page_id)
+#     context = {"object": page}
+#     return render(request, 'diary/page_detail.html', context=context)
+
+class PageDetailView(DetailView):
+    model = Page
+    template_name = 'diary/page_detail.html'
+    pk_url_kwarg = 'page_id'
 
 # def page_create(request):
 #     if request.method == 'POST':
